@@ -3,5 +3,10 @@
   "env": {
     "browser": true
   },
-  "plugins": ["babel"]
+  "plugins": [
+    "babel"
+  ],
+  "settings": {
+    "import/resolver": "webpack"
+  }
 }

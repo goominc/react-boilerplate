@@ -1,5 +1,6 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
+const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
@@ -13,6 +14,10 @@ module.exports = {
   },
   resolve: {
     extensions: ['', '.js', '.jsx'],
+    root: [
+      path.resolve(__dirname),
+      path.resolve(__dirname, './desktop'),
+    ],
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),

@@ -7,9 +7,9 @@ import thunk from 'redux-thunk';
 import promise from 'redux-promise';
 import createLogger from 'redux-logger';
 
-import reducers from './reducers';
-import App from './components/App';
-import About from './components/About';
+import About from 'components/About';
+import App from 'components/App';
+import reducers from 'reducers';
 
 require('./stylesheets/main.scss');
 
