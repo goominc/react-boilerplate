@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint . --ext js,jsx",
-    "start": "NODE_ENV=development node server"
+    "publish": "NODE_ENV=production ./node_modules/.bin/webpack",
+    "start": "node server"
   },
   "repository": {
     "type": "git",

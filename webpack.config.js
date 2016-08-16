@@ -3,11 +3,33 @@
 const path = require('path');
 const webpack = require('webpack');
 
+const mode = process.env.NODE_ENV || 'development';
+const device = process.env.DEVICE || 'desktop';
+
+const entry = [`./${device}/main`];
+const plugins = [
+  new webpack.DefinePlugin({
+    'process.env': {
+      NODE_ENV: JSON.stringify(mode),
+    },
+  }),
+  new webpack.optimize.OccurenceOrderPlugin(),
+];
+
+if (mode === 'production') {
+  plugins.push(new webpack.optimize.DedupePlugin());
+  plugins.push(new webpack.optimize.UglifyJsPlugin({
+    compress: {
+      warnings: false,
+    },
+  }));
+} else {
+  entry.push('webpack-hot-middleware/client');
+  plugins.push(new webpack.HotModuleReplacementPlugin());
+}
+
 module.exports = {
-  entry: [
-    'webpack-hot-middleware/client',
-    './desktop/main',
-  ],
+  entry,
   output: {
     path: __dirname,
     filename: 'bundle.js',
@@ -16,14 +38,10 @@ module.exports = {
     extensions: ['', '.js', '.jsx'],
     root: [
       path.resolve(__dirname),
-      path.resolve(__dirname, './desktop'),
+      path.resolve(__dirname, device),
     ],
   },
-  plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.EnvironmentPlugin(['NODE_ENV']),
-  ],
+  plugins,
   module: {
     loaders: [
       {
