@@ -1,0 +1,55 @@
+// Copyright (C) 2016 Goom Inc. All rights reserved.
+
+import React, { PropTypes } from 'react';
+
+const SignupForm = ({ doSignup }) => {
+  const input = {};
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (!input.email.value || !input.password.value) {
+      window.alert('input email & password');
+      return;
+    }
+    if (input.password.value !== input.passwordRe.value) {
+      window.alert('password mismatch');
+      return;
+    }
+    const data = {
+      email: input.email.value,
+      password: input.password.value,
+    };
+    doSignup(data);
+  };
+  return (
+    <form onSubmit={onSubmit}>
+      <input
+        type="email"
+        ref={node => {
+          input.email = node;
+        }}
+        placeholder="Email"
+      /><br />
+      <input
+        type="password"
+        ref={node => {
+          input.password = node;
+        }}
+        placeholder="Password"
+      /><br />
+      <input
+        type="password"
+        ref={node => {
+          input.passwordRe = node;
+        }}
+        placeholder="Retype Password"
+      /><br />
+      <button type="submit">Signup</button>
+    </form>
+  );
+};
+
+SignupForm.propTypes = {
+  doSignup: PropTypes.func,
+};
+
+export default SignupForm;

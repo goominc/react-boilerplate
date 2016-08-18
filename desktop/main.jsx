@@ -9,6 +9,8 @@ import createLogger from 'redux-logger';
 
 import About from 'components/About';
 import App from 'components/App';
+import Login from 'containers/Login';
+import Signup from 'containers/Signup';
 import reducers from 'reducers';
 
 require('./stylesheets/main.scss');
@@ -24,6 +26,8 @@ render(
     <Router history={browserHistory}>
       <Route path="/" component={App} />
       <Route path="/about" component={About} />
+      <Route path="/auth/login" component={Login} />
+      <Route path="/auth/signup" component={Signup} />
     </Router>
   </Provider>,
   document.getElementById('root')
