@@ -8,7 +8,7 @@ import promise from 'redux-promise';
 import createLogger from 'redux-logger';
 
 import About from 'components/About';
-import App from 'components/App';
+import App from 'containers/App';
 import Login from 'containers/Login';
 import Signup from 'containers/Signup';
 import reducers from 'reducers';

@@ -1,6 +1,7 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 
 const SignupForm = ({ doSignup }) => {
   const input = {};
@@ -43,7 +44,9 @@ const SignupForm = ({ doSignup }) => {
         }}
         placeholder="Retype Password"
       /><br />
-      <button type="submit">Signup</button>
+      <button type="submit">Signup</button><br /><br />
+      <Link to="/auth/login">Go Login</Link><br />
+      <Link to="/">Go Home</Link>
     </form>
   );
 };
