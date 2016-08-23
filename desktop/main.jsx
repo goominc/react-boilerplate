@@ -1,3 +1,5 @@
+/* global translatedMessages */
+
 import React from 'react';
 import { render } from 'react-dom';
 import { IntlProvider, addLocaleData } from 'react-intl';
@@ -14,12 +16,15 @@ import About from 'components/About';
 import App from 'containers/App';
 import Login from 'containers/Login';
 import Signup from 'containers/Signup';
+import i18n from 'i18n';
 import reducers from 'reducers';
 
 require('./stylesheets/main.scss');
 
 addLocaleData(en);
 addLocaleData(ko);
+
+const locale = 'ko';
 
 const middlewares = [thunk, promise];
 if (process.env.NODE_ENV === 'development') {
@@ -29,7 +34,7 @@ const store = createStore(reducers, applyMiddleware(...middlewares));
 
 render(
   <Provider store={store}>
-    <IntlProvider locale={'en'}>
+    <IntlProvider locale={locale} messages={i18n[locale]}>
       <Router history={browserHistory}>
         <Route path="/" component={App} />
         <Route path="/about" component={About} />

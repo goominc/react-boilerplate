@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "./node_modules/.bin/eslint . --ext js,jsx",
     "publish": "NODE_ENV=production ./node_modules/.bin/webpack",
-    "start": "node server"
+    "start": "node server",
+    "translate": "node translate"
   },
   "repository": {
     "type": "git",
@@ -38,6 +39,9 @@
     "eslint-plugin-import": "^1.13.0",
     "eslint-plugin-jsx-a11y": "^2.1.0",
     "eslint-plugin-react": "^6.1.1",
+    "glob": "^7.0.5",
+    "json-loader": "^0.5.4",
+    "mkdirp": "^0.5.1",
     "node-sass": "^3.8.0",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
