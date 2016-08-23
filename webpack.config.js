@@ -6,6 +6,7 @@ const webpack = require('webpack');
 const mode = process.env.NODE_ENV || 'development';
 const device = process.env.DEVICE || 'desktop';
 
+const configuration = {};
 const entry = [`./${device}/main`];
 const plugins = [
   new webpack.DefinePlugin({
@@ -24,11 +25,13 @@ if (mode === 'production') {
     },
   }));
 } else {
+  configuration.devtool = 'source-map';
+
   entry.push('webpack-hot-middleware/client');
   plugins.push(new webpack.HotModuleReplacementPlugin());
 }
 
-module.exports = {
+module.exports = Object.assign(configuration, {
   entry,
   output: {
     path: __dirname,
@@ -50,6 +53,10 @@ module.exports = {
         exclude: /node_modules/,
         query: {
           presets: ['es2015', 'react'],
+          plugins: [['react-intl', {
+            messagesDir: './build/messages/',
+            enforceDescriptions: true,
+          }]],
         },
       },
       {
@@ -58,4 +65,4 @@ module.exports = {
       },
     ],
   },
-};
+});

@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { defineMessages, injectIntl, intlShape } from 'react-intl';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
@@ -6,8 +7,17 @@ import Footer from 'components/Footer';
 import AddTodo from 'containers/AddTodo';
 import VisibleTodoList from 'containers/VisibleTodoList';
 
-const App = ({ auth }) => (
+const messages = defineMessages({
+  title: {
+    id: 'main.title',
+    description: 'Title in the main page',
+    defaultMessage: 'I18N Title',
+  },
+});
+
+const App = ({ auth, intl }) => (
   <div>
+    <h1>{intl.formatMessage(messages.title)}</h1>
     <AddTodo />
     <VisibleTodoList />
     <Footer />
@@ -25,8 +35,9 @@ const App = ({ auth }) => (
 
 App.propTypes = {
   auth: PropTypes.object,
+  intl: intlShape.isRequired,
 };
 
 export default connect(
   state => ({ auth: state.auth })
-)(App);
+)(injectIntl(App));
