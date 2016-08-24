@@ -7,7 +7,7 @@ const mode = process.env.NODE_ENV || 'development';
 const devices = ['desktop', 'mobile'];
 
 module.exports = devices.map((device) => {
-  const entry = [`./${device}/main`];
+  const entry = [path.resolve(__dirname, `${device}/main`)];
   const plugins = [
     new webpack.DefinePlugin({
       'process.env': {
@@ -19,7 +19,7 @@ module.exports = devices.map((device) => {
   const configuration = {
     entry,
     output: {
-      path: __dirname,
+      path: path.resolve(__dirname, 'dist'),
       filename: `${device}.bundle.js`,
     },
     resolve: {

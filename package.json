@@ -7,7 +7,7 @@
     "lint": "./node_modules/.bin/eslint . --ext js,jsx",
     "publish": "NODE_ENV=production ./node_modules/.bin/webpack",
     "start": "node server",
-    "translate": "node translate"
+    "translate": "node scripts/translate"
   },
   "repository": {
     "type": "git",
