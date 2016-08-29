@@ -8,7 +8,7 @@ const LoginForm = ({ doLogin }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (!input.email.value || !input.password.value) {
-      window.alert('input email & password');
+      window.alert('input email & password'); // eslint-disable-line no-alert
       return;
     }
     const data = {

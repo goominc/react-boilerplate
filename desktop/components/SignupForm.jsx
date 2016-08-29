@@ -8,11 +8,11 @@ const SignupForm = ({ doSignup }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (!input.email.value || !input.password.value) {
-      window.alert('input email & password');
+      window.alert('input email & password'); // eslint-disable-line no-alert
       return;
     }
     if (input.password.value !== input.passwordRe.value) {
-      window.alert('password mismatch');
+      window.alert('password mismatch'); // eslint-disable-line no-alert
       return;
     }
     const data = {

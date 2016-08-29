@@ -9,6 +9,9 @@
     "start": "node server",
     "translate": "node scripts/translate"
   },
+  "pre-commit": [
+    "lint"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/goominc/react-boilerplate.git"
@@ -43,6 +46,7 @@
     "json-loader": "^0.5.4",
     "mkdirp": "^0.5.1",
     "node-sass": "^3.8.0",
+    "pre-commit": "^1.1.3",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
     "webpack-dev-server": "^1.14.1"

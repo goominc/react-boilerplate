@@ -39,7 +39,7 @@ export const login = (body) => (dispatch) => (
     .send(body)
     .then((res) => dispatch(getLoginAction(res)))
     .catch((error) => {
-      window.alert(error.response.text);
+      window.alert(error.response.text); // eslint-disable-line no-alert
       throw error;
     })
 );
@@ -50,7 +50,7 @@ export const signup = (body) => (dispatch) => (
     .send(body)
     .then((res) => dispatch(getLoginAction(res)))
     .catch((error) => {
-      window.alert(error.response.text);
+      window.alert(error.response.text); // eslint-disable-line no-alert
       throw error;
     })
 );
