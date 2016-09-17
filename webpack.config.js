@@ -21,6 +21,7 @@ module.exports = devices.map((device) => {
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: `${device}.bundle.js`,
+      publicPath: '/dist/',
     },
     resolve: {
       extensions: ['', '.js', '.jsx'],
@@ -45,7 +46,7 @@ module.exports = devices.map((device) => {
           },
         },
         {
-          test: /\.scss$/,
+          test: new RegExp(`${device}\\/stylesheets\\/.*\\.scss$`),
           loaders: ['style', 'css', 'sass'],
         },
       ],

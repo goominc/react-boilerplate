@@ -10,7 +10,10 @@ const config = require('./webpack.config');
 
 const app = express();
 const compiler = webpack(config);
-app.use(webpackDevMiddleware(compiler, { noInfo: true }));
+app.use(webpackDevMiddleware(compiler, {
+  noInfo: true,
+  publicPath: config[0].output.publicPath,
+}));
 app.use(webpackHotMiddleware(compiler));
 
 // parse application/json
@@ -43,6 +46,10 @@ app.post('/api/v1/login', (req, res) => {
     }
   }
   res.send(400, 'Invalid email or password');
+});
+
+app.get('/dist/*', (req, res) => {
+  res.sendStatus(404);
 });
 
 app.get('*', (req, res) => {
