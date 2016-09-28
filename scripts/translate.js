@@ -18,8 +18,8 @@ const ENGLISH_FILE = 'en.json';
 // is a flat collection of `id: message` pairs for the app's default locale.
 const has = Object.prototype.hasOwnProperty;
 const messages = glob.sync(MESSAGES_PATTERN)
-  .map((filename) => fs.readFileSync(filename, 'utf8'))
-  .map((file) => JSON.parse(file))
+  .map(filename => fs.readFileSync(filename, 'utf8'))
+  .map(file => JSON.parse(file))
   .reduce((collection, descriptors) => {
     descriptors.forEach(({ id, defaultMessage }) => {
       if (has.call(collection, id)) {

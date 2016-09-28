@@ -34,7 +34,9 @@ const App = ({ auth, intl }) => (
 );
 
 App.propTypes = {
-  auth: PropTypes.object,
+  auth: PropTypes.shape({
+    email: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+  }),
   intl: intlShape.isRequired,
 };
 

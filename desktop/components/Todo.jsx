@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+
 const Todo = ({ onClick, completed, text }) => (
   <li
     onClick={onClick}

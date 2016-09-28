@@ -21,14 +21,14 @@ const LoginForm = ({ doLogin }) => {
     <form onSubmit={onSubmit}>
       <input
         type="email"
-        ref={node => {
+        ref={(node) => {
           input.email = node;
         }}
         placeholder="Email"
       /><br />
       <input
         type="password"
-        ref={node => {
+        ref={(node) => {
           input.password = node;
         }}
         placeholder="Password"

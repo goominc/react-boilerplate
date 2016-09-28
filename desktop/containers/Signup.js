@@ -6,7 +6,7 @@ import { browserHistory } from 'react-router';
 import { signup } from 'actions';
 import SignupForm from 'components/SignupForm';
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   doSignup: (body) => {
     dispatch(signup(body))
       .then(() => browserHistory.push('/'))

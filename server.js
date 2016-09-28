@@ -27,7 +27,7 @@ app.get('/ping', (req, res) => {
 const users = [];
 app.post('/api/v1/users', (req, res) => {
   const user = req.body;
-  for (let i = 0; i < users.length; i++) {
+  for (let i = 0; i < users.length; i += 1) {
     if (users[i].email === user.email) {
       res.send(400, `Email ${user.email} already exists`);
       return;
@@ -39,7 +39,7 @@ app.post('/api/v1/users', (req, res) => {
 });
 
 app.post('/api/v1/login', (req, res) => {
-  for (let i = 0; i < users.length; i++) {
+  for (let i = 0; i < users.length; i += 1) {
     if (users[i].email === req.body.email && users[i].password === req.body.password) {
       res.json(_.omit(users[i], 'password'));
       return;
