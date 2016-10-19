@@ -34,7 +34,7 @@ const App = ({ auth, intl }) => (
 
 App.propTypes = {
   auth: PropTypes.shape({
-    email: PropTypes.string.isRequired,
+    email: PropTypes.string,
   }),
   intl: intlShape.isRequired,
 };

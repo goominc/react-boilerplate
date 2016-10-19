@@ -17,6 +17,7 @@ module.exports = devices.map((device) => {
     new webpack.optimize.OccurenceOrderPlugin(),
   ];
   const configuration = {
+    device,
     entry,
     output: {
       path: path.resolve(__dirname, 'dist'),
@@ -61,10 +62,11 @@ module.exports = devices.map((device) => {
       },
     }));
   } else {
-    configuration.devtool = 'source-map';
+    configuration.devtool = '#source-map';
 
-    entry.push('webpack-hot-middleware/client');
+    entry.push('webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true');
     plugins.push(new webpack.HotModuleReplacementPlugin());
+    plugins.push(new webpack.NoErrorsPlugin());
   }
   return configuration;
 });
