@@ -1,19 +1,15 @@
 import React, { PropTypes } from 'react';
 
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-
-const Todo = ({ onClick, completed, text }) => (
-  <li
-    onClick={onClick}
-    style={{
-      textDecoration: completed ? 'line-through' : 'none',
-    }}
-  >
-    {text}
+const Todo = ({ tabIndex, onClick, completed, text }) => (
+  <li style={{ textDecoration: completed ? 'line-through' : 'none' }}>
+    <a tabIndex={tabIndex} onClick={onClick}>
+      {text}
+    </a>
   </li>
 );
 
 Todo.propTypes = {
+  tabIndex: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired,
   completed: PropTypes.bool.isRequired,
   text: PropTypes.string.isRequired,

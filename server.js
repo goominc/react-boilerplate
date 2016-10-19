@@ -29,7 +29,7 @@ app.post('/api/v1/users', (req, res) => {
   const user = req.body;
   for (let i = 0; i < users.length; i += 1) {
     if (users[i].email === user.email) {
-      res.send(400, `Email ${user.email} already exists`);
+      res.status(400).send(`Email ${user.email} already exists`);
       return;
     }
   }
@@ -45,7 +45,7 @@ app.post('/api/v1/login', (req, res) => {
       return;
     }
   }
-  res.send(400, 'Invalid email or password');
+  res.status(400).send('Invalid email or password');
 });
 
 app.get('/dist/*', (req, res) => {

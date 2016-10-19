@@ -3,13 +3,12 @@ import request from 'superagent';
 let nextTodoId = 0;
 
 export const addTodo = (text) => {
-  const ret = {
+  nextTodoId += 1;
+  return {
     type: 'ADD_TODO',
     id: nextTodoId,
     text,
   };
-  nextTodoId += 1;
-  return ret;
 };
 
 export const setVisibilityFilter = filter => ({

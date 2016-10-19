@@ -7,8 +7,9 @@ const TodoList = ({ todos, onTodoClick }) => (
     {todos && todos.map(todo =>
       <Todo
         key={todo.id}
-        {...todo}
+        tabIndex={todo.id}
         onClick={() => onTodoClick(todo.id)}
+        {...todo}
       />
     )}
   </ul>

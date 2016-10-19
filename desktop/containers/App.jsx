@@ -21,8 +21,7 @@ const App = ({ auth, intl }) => (
     <AddTodo />
     <VisibleTodoList />
     <Footer />
-    {auth && auth.email ?
-      `Hi, ${auth.email}` :
+    {auth && auth.email ? `Hi, ${auth.email}` :
       <div>
         <Link to="/auth/login">Login</Link><br />
         <Link to="/auth/signup">Signup</Link>
@@ -35,7 +34,7 @@ const App = ({ auth, intl }) => (
 
 App.propTypes = {
   auth: PropTypes.shape({
-    email: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+    email: PropTypes.string.isRequired,
   }),
   intl: intlShape.isRequired,
 };
