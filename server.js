@@ -25,36 +25,40 @@ app.use((req, res, next) => {
   next();
 });
 
+if (process.env.NODE_ENV === 'production') {
+  app.use('/dist', express.static('dist'));
+} else {
+  const webpackMiddlewares = {};
+  config.forEach((c) => {
+    const compiler = webpack(c);
+    const middleware = connect();
+    middleware.use(webpackDevMiddleware(compiler, {
+      noInfo: true,
+      publicPath: config[0].output.publicPath,
+    }));
+    middleware.use(webpackHotMiddleware(compiler, {
+      log: console.log, // eslint-disable-line no-console
+      path: '/__webpack_hmr',
+      heartbeat: 10 * 1000,
+    }));
+    webpackMiddlewares[c.device] = middleware;
+  });
 
-// Webpack
-const webpackMiddlewares = {};
-config.forEach((c) => {
-  const compiler = webpack(c);
-  const middleware = connect();
-  middleware.use(webpackDevMiddleware(compiler, {
-    noInfo: true,
-    publicPath: config[0].output.publicPath,
-  }));
-  middleware.use(webpackHotMiddleware(compiler, {
-    log: console.log, // eslint-disable-line no-console
-    path: '/__webpack_hmr',
-    heartbeat: 10 * 1000,
-  }));
-  webpackMiddlewares[c.device] = middleware;
-});
+  app.use((req, res, next) => {
+    webpackMiddlewares[req.device](req, res, next);
+  });
+}
 
-app.use((req, res, next) => {
-  webpackMiddlewares[req.device](req, res, next);
-});
-
-// parse application/json
+// Parse application/json
 app.use(bodyParser.json());
 
+// Ping
 app.get('/ping', (req, res) => {
   console.log('ping'); // eslint-disable-line no-console
   res.send('pong');
 });
 
+// APIs
 const users = [];
 app.post('/api/v1/users', (req, res) => {
   const user = req.body;
@@ -78,9 +82,11 @@ app.post('/api/v1/login', (req, res) => {
   res.status(400).send('Invalid email or password');
 });
 
+// index.html
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, `/${req.device}/index.html`));
 });
 
-app.listen(8080);
-console.log('listening on 8080'); // eslint-disable-line no-console
+const port = 8080;
+app.listen(port);
+console.log(`Listening on ${port}`); // eslint-disable-line no-console

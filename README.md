@@ -22,6 +22,11 @@ $ npm start
 $ npm run publish
 ```
 
+For testing,
+```bash
+$ npm run prod
+```
+
 ## License
 
   [MIT](LICENSE)

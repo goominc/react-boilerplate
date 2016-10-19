@@ -4,8 +4,9 @@
   "description": "Lightweight boilerplate for React with Redux, Babel and Webpack.",
   "main": "server.js",
   "scripts": {
-    "lint": "./node_modules/.bin/eslint . --ext js,jsx",
-    "publish": "NODE_ENV=production ./node_modules/.bin/webpack",
+    "lint": "eslint . --ext js,jsx",
+    "publish": "NODE_ENV=production webpack",
+    "prod": "NODE_ENV=production node server",
     "start": "node server",
     "translate": "node scripts/translate"
   },
