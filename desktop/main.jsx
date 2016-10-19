@@ -10,7 +10,6 @@ import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import promise from 'redux-promise';
-import createLogger from 'redux-logger';
 
 import About from 'components/About';
 import App from 'containers/App';
@@ -28,6 +27,7 @@ const locale = 'ko';
 
 const middlewares = [thunk, promise];
 if (process.env.NODE_ENV === 'development') {
+  const createLogger = require('redux-logger'); // eslint-disable-line
   middlewares.push(createLogger());
 }
 const store = createStore(reducers, applyMiddleware(...middlewares));
