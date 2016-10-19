@@ -1,10 +1,6 @@
-// Copyright (C) 2016 Goom Inc. All rights reserved.
-
-/* eslint-disable import/no-extraneous-dependencies */
-
 const fs = require('fs');
-const glob = require('glob');
-const mkdirp = require('mkdirp');
+const glob = require('glob'); // eslint-disable-line import/no-extraneous-dependencies
+const mkdirp = require('mkdirp'); // eslint-disable-line import/no-extraneous-dependencies
 const path = require('path');
 
 const MESSAGES_PATTERN = './build/messages/**/*.json';

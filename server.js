@@ -1,5 +1,3 @@
-// Copyright (C) 2016 Goom Inc. All rights reserved.
-
 const MobileDetect = require('mobile-detect');
 const bodyParser = require('body-parser');
 const connect = require('connect');

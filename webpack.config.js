@@ -1,5 +1,3 @@
-// Copyright (C) 2016 Goom Inc. All rights reserved.
-
 const path = require('path');
 const webpack = require('webpack');
 

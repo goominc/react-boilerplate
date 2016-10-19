@@ -1,5 +1,3 @@
-// Copyright (C) 2016 Goom Inc. All rights reserved.
-
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
