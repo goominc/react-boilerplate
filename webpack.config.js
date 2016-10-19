@@ -29,6 +29,12 @@ module.exports = devices.map((device) => {
         path.resolve(__dirname, device),
       ],
     },
+    externals: {
+      react: 'React',
+      redux: 'Redux',
+      'react-dom': 'ReactDOM',
+      'react-redux': 'ReactRedux',
+    },
     plugins,
     module: {
       loaders: [

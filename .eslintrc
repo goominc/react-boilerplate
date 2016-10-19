@@ -10,6 +10,7 @@
     "react/no-unused-prop-types": ["error", { skipShapeProps: true }]
   },
   "settings": {
-    "import/resolver": "webpack"
+    "import/resolver": "webpack",
+    "import/core-modules": ['react', 'react-dom', 'react-redux', 'redux']
   }
 }
