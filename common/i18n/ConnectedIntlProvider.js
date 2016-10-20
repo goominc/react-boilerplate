@@ -9,7 +9,7 @@ addLocaleData(en);
 addLocaleData(ko);
 
 function mapStateToProps(state) {
-  const locale = state.locale || 'ko';
+  const locale = state.locale;
   return { locale, messages: messages[locale] };
 }
 

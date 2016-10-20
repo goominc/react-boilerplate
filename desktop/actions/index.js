@@ -29,6 +29,11 @@ export const ping = () => (dispatch) => {
     .catch(error => dispatch({ type: 'PING_ERROR', error }));
 };
 
+export const setLocale = locale => ({
+  type: 'SET_LOCALE',
+  locale,
+});
+
 const getLoginAction = res => (dispatch) => {
   dispatch({
     type: 'LOGIN',
