@@ -4,16 +4,13 @@ import { browserHistory } from 'react-router';
 import { signup } from 'actions';
 import SignupForm from 'components/SignupForm';
 
-const mapDispatchToProps = dispatch => ({
-  doSignup: (body) => {
-    dispatch(signup(body))
-      .then(() => browserHistory.push('/'))
-      .catch(); // error handled in action
-  },
-});
-const Signup = connect(
+export default connect(
   undefined,
-  mapDispatchToProps
+  dispatch => ({
+    doSignup: (body) => {
+      dispatch(signup(body))
+        .then(() => browserHistory.push('/'))
+        .catch(); // error handled in action
+    },
+  })
 )(SignupForm);
-
-export default Signup;

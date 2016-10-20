@@ -4,16 +4,13 @@ import { browserHistory } from 'react-router';
 import { login } from 'actions';
 import LoginForm from 'components/LoginForm';
 
-const mapDispatchToProps = dispatch => ({
-  doLogin: (body) => {
-    dispatch(login(body))
-      .then(() => browserHistory.push('/'))
-      .catch(); // error handled in action
-  },
-});
-const Login = connect(
+export default connect(
   undefined,
-  mapDispatchToProps
+  dispatch => ({
+    doLogin: (body) => {
+      dispatch(login(body))
+        .then(() => browserHistory.push('/'))
+        .catch(); // error handled in action
+    },
+  })
 )(LoginForm);
-
-export default Login;

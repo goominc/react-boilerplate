@@ -1,4 +1,4 @@
-const locale = (state = 'ko', action) => {
+export default (state = 'ko', action) => {
   switch (action.type) {
     case 'SET_LOCALE':
       return action.locale;
@@ -6,5 +6,3 @@ const locale = (state = 'ko', action) => {
       return state;
   }
 };
-
-export default locale;
