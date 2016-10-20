@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { applyMiddleware, createStore, combineReducers } from 'redux';
+import { applyMiddleware, createStore, combineReducers, compose } from 'redux';
 import { Provider } from 'react-redux';
 import { Router, Route, browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
@@ -16,16 +16,21 @@ import reducers from 'reducers';
 import 'stylesheets/main.scss';
 
 const middlewares = [thunk, promise];
+let composeEnhancers = compose;
 if (process.env.NODE_ENV === 'development') {
-  const createLogger = require('redux-logger'); // eslint-disable-line
-  middlewares.push(createLogger());
+  if (typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) { // eslint-disable-line
+    composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__; // eslint-disable-line
+  } else {
+    const createLogger = require('redux-logger'); // eslint-disable-line
+    middlewares.push(createLogger());
+  }
 }
 const store = createStore(
   combineReducers({
     ...reducers,
     routing: routerReducer,
   }),
-  applyMiddleware(...middlewares));
+  composeEnhancers(applyMiddleware(...middlewares)));
 const history = syncHistoryWithStore(browserHistory, store);
 
 render(
