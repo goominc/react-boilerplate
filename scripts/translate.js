@@ -4,7 +4,7 @@ const mkdirp = require('mkdirp'); // eslint-disable-line import/no-extraneous-de
 const path = require('path');
 
 const MESSAGES_PATTERN = './build/messages/**/*.json';
-const I18N_DIR = './i18n';
+const I18N_DIR = './common/i18n/messages';
 const TRANSLATED_TEXT_PATTERN = `${I18N_DIR}/*.json`;
 const ENGLISH_FILE = 'en.json';
 
