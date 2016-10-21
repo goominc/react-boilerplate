@@ -11,6 +11,6 @@
   },
   "settings": {
     "import/resolver": "webpack",
-    "import/core-modules": ['react', 'react-dom', 'react-redux', 'react-router', 'redux']
+    "import/core-modules": ['react', 'react-dom', 'react-intl', 'react-redux', 'react-router', 'redux']
   }
 }

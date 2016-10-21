@@ -1,10 +1,13 @@
 import { connect } from 'react-redux';
 import { IntlProvider, addLocaleData } from 'react-intl';
-import ko from 'react-intl/locale-data/ko';
 
 import messages from 'common/i18n/messages';
 
-addLocaleData(ko);
+if ('ReactIntlLocaleData' in window) {
+  Object.keys(window.ReactIntlLocaleData).forEach((lang) => {
+    addLocaleData(window.ReactIntlLocaleData[lang]);
+  });
+}
 
 function mapStateToProps(state) {
   const locale = state.locale;
