@@ -23,23 +23,17 @@ const SignupForm = ({ doSignup }) => {
     <form onSubmit={onSubmit}>
       <input
         type="email"
-        ref={(node) => {
-          input.email = node;
-        }}
+        ref={node => (input.email = node)}
         placeholder="Email"
       /><br />
       <input
         type="password"
-        ref={(node) => {
-          input.password = node;
-        }}
+        ref={node => (input.password = node)}
         placeholder="Password"
       /><br />
       <input
         type="password"
-        ref={(node) => {
-          input.passwordRe = node;
-        }}
+        ref={node => (input.passwordRe = node)}
         placeholder="Retype Password"
       /><br />
       <button type="submit">Signup</button><br /><br />
