@@ -35,6 +35,7 @@ module.exports = devices.map((device) => {
       'react-intl': 'ReactIntl',
       'react-redux': 'ReactRedux',
       'react-router': 'ReactRouter',
+      'react-router-redux': 'ReactRouterRedux',
       redux: 'Redux',
       superagent: 'superagent',
     },

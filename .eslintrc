@@ -17,6 +17,7 @@
       'react-intl',
       'react-redux',
       'react-router',
+      'react-router-redux',
       'redux',
       'superagent'
     ]
