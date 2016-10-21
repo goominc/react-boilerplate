@@ -31,11 +31,12 @@ module.exports = devices.map((device) => {
     },
     externals: {
       react: 'React',
-      redux: 'Redux',
       'react-dom': 'ReactDOM',
       'react-intl': 'ReactIntl',
       'react-redux': 'ReactRedux',
       'react-router': 'ReactRouter',
+      redux: 'Redux',
+      superagent: 'superagent',
     },
     plugins,
     module: {
