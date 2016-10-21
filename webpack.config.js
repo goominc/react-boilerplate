@@ -34,6 +34,7 @@ module.exports = devices.map((device) => {
       redux: 'Redux',
       'react-dom': 'ReactDOM',
       'react-redux': 'ReactRedux',
+      'react-router': 'ReactRouter',
     },
     plugins,
     module: {
