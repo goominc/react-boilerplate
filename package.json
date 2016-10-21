@@ -4,6 +4,7 @@
   "description": "Lightweight boilerplate for React with Redux, Babel and Webpack.",
   "main": "server.js",
   "scripts": {
+    "analyze": "npm run --silent publish -- --json | webpack-bundle-size-analyzer",
     "lint": "npm run lint:css && npm run lint:js",
     "lint:css": "stylelint */stylesheets/**/*",
     "lint:js": "eslint . --ext js,jsx",
@@ -55,6 +56,7 @@
     "style-loader": "^0.13.1",
     "stylelint": "^7.5.0",
     "stylelint-config-standard": "^13.0.2",
+    "webpack-bundle-size-analyzer": "^2.2.0",
     "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
