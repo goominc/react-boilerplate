@@ -37,6 +37,8 @@ module.exports = devices.map((device) => {
       'react-router': 'ReactRouter',
       'react-router-redux': 'ReactRouterRedux',
       redux: 'Redux',
+      'redux-promise-middleware': 'ReduxPromiseMiddleware',
+      'redux-thunk': 'ReduxThunk',
       superagent: 'superagent',
     },
     plugins,
