@@ -13,11 +13,11 @@ import App from 'containers/App';
 import Login from 'containers/Login';
 import Signup from 'containers/Signup';
 import reducers from 'reducers';
-import 'stylesheets/main.scss';
 
 const middlewares = [thunk, promiseMiddleware(), routerMiddleware(browserHistory)];
 let composeEnhancers = compose;
 if (process.env.NODE_ENV === 'development') {
+  require('stylesheets/main.scss'); // eslint-disable-line
   if (typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) { // eslint-disable-line
     composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__; // eslint-disable-line
   } else {
