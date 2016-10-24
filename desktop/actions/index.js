@@ -1,3 +1,4 @@
+import { goBack } from 'react-router-redux';
 import request from 'superagent';
 
 let nextTodoId = 0;
@@ -46,10 +47,8 @@ export const login = body => dispatch => (
     .post('/api/v1/login')
     .send(body)
     .then(res => dispatch(getLoginAction(res)))
-    .catch((error) => {
-      window.alert(error.response.text); // eslint-disable-line no-alert
-      throw error;
-    })
+    .then(() => dispatch(goBack()))
+    .catch(error => window.alert(error.response.text)) // eslint-disable-line no-alert
 );
 
 export const signup = body => dispatch => (
@@ -57,8 +56,6 @@ export const signup = body => dispatch => (
     .post('/api/v1/users')
     .send(body)
     .then(res => dispatch(getLoginAction(res)))
-    .catch((error) => {
-      window.alert(error.response.text); // eslint-disable-line no-alert
-      throw error;
-    })
+    .then(() => dispatch(goBack()))
+    .catch(error => window.alert(error.response.text)) // eslint-disable-line no-alert
 );
