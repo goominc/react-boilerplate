@@ -81,9 +81,15 @@ app.post('/api/v1/login', (req, res) => {
 });
 
 // index.html
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, `/${req.device}/index.html`));
-});
+if (process.env.NODE_ENV === 'production') {
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, `/dist/${req.device}.html`));
+  });
+} else {
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, `/${req.device}/index.html`));
+  });
+}
 
 const port = 8080;
 app.listen(port);
