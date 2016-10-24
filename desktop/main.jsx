@@ -3,9 +3,9 @@ import { render } from 'react-dom';
 import { applyMiddleware, createStore, combineReducers, compose } from 'redux';
 import { Provider } from 'react-redux';
 import { Router, Route, browserHistory } from 'react-router';
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
+import { syncHistoryWithStore, routerMiddleware, routerReducer } from 'react-router-redux';
 import thunk from 'redux-thunk';
-import promise from 'redux-promise';
+import promiseMiddleware from 'redux-promise-middleware';
 
 import ConnectedIntlProvider from 'common/i18n/ConnectedIntlProvider';
 import About from 'components/About';
@@ -15,7 +15,7 @@ import Signup from 'containers/Signup';
 import reducers from 'reducers';
 import 'stylesheets/main.scss';
 
-const middlewares = [thunk, promise];
+const middlewares = [thunk, promiseMiddleware(), routerMiddleware(browserHistory)];
 let composeEnhancers = compose;
 if (process.env.NODE_ENV === 'development') {
   if (typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) { // eslint-disable-line
