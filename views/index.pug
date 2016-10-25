@@ -1,0 +1,13 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    if device === 'mobile'
+      meta(name='viewport' content='width=device-width, initial-scale=1')
+    title React Boilerplate
+    link(rel='icon' href='data:;base64,iVBORw0KGgo=')
+    if env === 'production'
+      link(rel='stylesheet' type='text/css' href='/dist/' + device + '.css')
+  body
+    #root
+    script(src='/dist/' + device + '.bundle.js')
