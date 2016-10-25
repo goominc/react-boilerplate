@@ -4,7 +4,6 @@ const connect = require('connect');
 const express = require('express');
 const morgan = require('morgan');
 const omit = require('lodash.omit');
-const path = require('path');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
@@ -12,6 +11,7 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('./webpack.config');
 
 const app = express();
+app.set('view engine', 'pug');
 
 // morgan
 app.use(morgan('dev'));
@@ -80,16 +80,10 @@ app.post('/api/v1/login', (req, res) => {
   res.status(400).send('Invalid email or password');
 });
 
-// index.html
-if (process.env.NODE_ENV === 'production') {
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, `/dist/${req.device}.html`));
-  });
-} else {
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, `/${req.device}/index.html`));
-  });
-}
+// views/index.pug
+app.get('*', (req, res) => {
+  res.render('index', { env: process.env.NODE_ENV, device: req.device });
+});
 
 const port = 8080;
 app.listen(port);

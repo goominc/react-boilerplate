@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    if device === 'mobile'
+      meta(name='viewport' content='width=device-width, initial-scale=1')
+    title React Boilerplate
+    link(rel='icon' href='data:;base64,iVBORw0KGgo=')
+    if env === 'production'
+      link(rel='stylesheet' type='text/css' href='/dist/' + device + '.css')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react-dom.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/redux/3.6.0/redux.min.js')
+    script(src='https://unpkg.com/redux-promise-middleware@4.1.0/dist/ReduxPromiseMiddleware.min.js')
+    script(src='https://unpkg.com/redux-thunk@2.1.0/dist/redux-thunk.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/react-redux/4.4.5/react-redux.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/react-router/2.8.1/ReactRouter.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/react-router-redux/4.0.6/ReactRouterRedux.min.js')
+    script(src='https://unpkg.com/react-intl@2.1.5/dist/react-intl.min.js')
+    script(src='https://unpkg.com/react-intl@2.1.5/locale-data/ko.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/superagent/2.3.0/superagent.min.js')
+  body
+    #root
+    script(src='/dist/' + device + '.bundle.js')
