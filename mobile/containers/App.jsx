@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { defineMessages, injectIntl, intlShape } from 'react-intl';
 import { connect } from 'react-redux';
 
-import { getMain } from 'common/actions';
+import { getMain, toggleBullet } from 'common/actions';
 import MainImage from 'components/MainImage';
 
 const messages = defineMessages({
@@ -19,7 +19,7 @@ class App extends Component {
   }
 
   render() {
-    const { intl, main } = this.props;
+    const { intl, main, ui } = this.props;
     const src = (main.images && main.images.length && main.images[0].url) || '';
     const bullets = (main.bullets || []).map(b => ({
       style: b.style,
@@ -28,7 +28,12 @@ class App extends Component {
     return (
       <div>
         <h1>{intl.formatMessage(messages.title)}</h1>
-        <MainImage src={src} bullets={bullets} />
+        <MainImage
+          src={src}
+          bullets={bullets}
+          showBullets={ui.bullet}
+          onClick={this.props.toggleBullet}
+        />
       </div>
     );
   }
@@ -50,10 +55,14 @@ App.propTypes = {
       }).isRequired,
     })),
   }),
+  ui: PropTypes.shape({
+    bullet: PropTypes.bool.isRequired,
+  }),
   getMain: PropTypes.func.isRequired,
+  toggleBullet: PropTypes.func.isRequired,
 };
 
 export default connect(
-  state => ({ main: state.main }),
-  { getMain },
+  state => ({ main: state.main, ui: state.ui }),
+  { getMain, toggleBullet },
 )(injectIntl(App));

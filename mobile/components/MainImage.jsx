@@ -1,9 +1,11 @@
 import React, { PropTypes } from 'react';
 
-const MainImage = ({ src, bullets }) => (
+const MainImage = ({ src, bullets, onClick, showBullets }) => (
   <div className="main-image">
-    <img alt="Main" src={src} />
-    {bullets.map((b, i) => <button key={i} {...b} />)}
+    <a tabIndex="0" onClick={onClick}>
+      <img alt="Main" src={src} />
+    </a>
+    {showBullets ? bullets.map((b, i) => <button key={i} {...b} />) : ''}
   </div>
 );
 
@@ -16,6 +18,8 @@ MainImage.propTypes = {
     }),
     onClick: PropTypes.func.isRequired,
   })),
+  onClick: PropTypes.func.isRequired,
+  showBullets: PropTypes.bool.isRequired,
 };
 
 export default MainImage;
