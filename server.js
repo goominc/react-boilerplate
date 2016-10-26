@@ -80,6 +80,23 @@ app.post('/api/v1/login', (req, res) => {
   res.status(400).send('Invalid email or password');
 });
 
+app.get('/api/v1/main', (req, res) => {
+  res.json({
+    images: [{
+      url: 'http://ameli.co.kr/shop/data/skin/0662thehome_C/new_img/main/ins_bnr16.jpg',
+    }],
+    bullets: [{
+      style: {
+        left: '71%',
+        top: '48%',
+      },
+      product: {
+        url: 'http://ameli.co.kr/shop/goods/goods_view.php?goodsno=859',
+      },
+    }],
+  });
+});
+
 // views/index.pug
 app.get('*', (req, res) => {
   res.render('index', { env: process.env.NODE_ENV, device: req.device });

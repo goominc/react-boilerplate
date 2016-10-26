@@ -1,0 +1,16 @@
+.main-image {
+  position: relative;
+
+  img {
+    width: 100%;
+  }
+
+  button {
+    background-color: red;
+    border: 1px solid white;
+    border-radius: 8px;
+    height: 16px;
+    position: absolute;
+    width: 16px;
+  }
+}

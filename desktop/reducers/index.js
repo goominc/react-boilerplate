@@ -1,5 +1,6 @@
+import locale from 'common/reducers/locale';
+
 import auth from './auth';
-import locale from './locale';
 import todos from './todos';
 import visibilityFilter from './visibilityFilter';
 

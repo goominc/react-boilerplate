@@ -1,11 +1,13 @@
 import React from 'react';
-import { render } from 'react-dom';
+import { Route } from 'react-router';
 
-if (process.env.NODE_ENV === 'development') {
-  require('stylesheets/main.scss'); // eslint-disable-line
-}
+import init from 'common/init';
+import App from 'containers/App';
+import reducers from 'reducers';
 
-render(
-  <div>Mobile Test</div>,
-  document.getElementById('root')
+init(
+  <Route>
+    <Route path="/" component={App} />
+  </Route>,
+  reducers,
 );
