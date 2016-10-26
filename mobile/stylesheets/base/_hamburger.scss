@@ -1,0 +1,203 @@
+// Code from https://codepen.io/designcouch/pen/Atyop
+
+$scale: 0.333;
+$background: #a6a6a6;
+
+// Base
+#nav-icon1,
+#nav-icon2,
+#nav-icon3,
+#nav-icon4 {
+  cursor: pointer;
+  height: 45px * $scale;
+  position: relative;
+  transform: rotate(0deg);
+  transition: 0.5s ease-in-out;
+  width: 60px * $scale;
+}
+
+#nav-icon1 span,
+#nav-icon2 span,
+#nav-icon3 span,
+#nav-icon4 span {
+  background: $background;
+  display: block;
+  height: 9px * $scale;
+  opacity: 1;
+  position: absolute;
+  transform: rotate(0deg);
+  transition: 0.25s ease-in-out;
+}
+
+#nav-icon1 span,
+#nav-icon3 span,
+#nav-icon4 span {
+  border-radius: 9px * $scale;
+  left: 0;
+  width: 100%;
+}
+
+// Icon 1
+#nav-icon1 span:nth-child(1) {
+  top: 0;
+}
+
+#nav-icon1 span:nth-child(2) {
+  top: 18px * $scale;
+}
+
+#nav-icon1 span:nth-child(3) {
+  top: 36px * $scale;
+}
+
+#nav-icon1.open span:nth-child(1) {
+  top: 18px * $scale;
+  transform: rotate(135deg);
+}
+
+#nav-icon1.open span:nth-child(2) {
+  left: -60px * $scale;
+  opacity: 0;
+}
+
+#nav-icon1.open span:nth-child(3) {
+  top: 18px * $scale;
+  transform: rotate(-135deg);
+}
+
+// Icon 2
+#nav-icon2 span {
+  width: 50%;
+}
+
+#nav-icon2 span:nth-child(even) {
+  border-radius: 0 9px 9px 0;
+  left: 50%;
+}
+
+#nav-icon2 span:nth-child(odd) {
+  border-radius: 9px 0 0 9px * $scale;
+  left: 0;
+}
+
+#nav-icon2 span:nth-child(1),
+#nav-icon2 span:nth-child(2) {
+  top: 0;
+}
+
+#nav-icon2 span:nth-child(3),
+#nav-icon2 span:nth-child(4) {
+  top: 18px * $scale;
+}
+
+#nav-icon2 span:nth-child(5),
+#nav-icon2 span:nth-child(6) {
+  top: 36px * $scale;
+}
+
+#nav-icon2.open span:nth-child(1),
+#nav-icon2.open span:nth-child(6) {
+  transform: rotate(45deg);
+}
+
+#nav-icon2.open span:nth-child(2),
+#nav-icon2.open span:nth-child(5) {
+  transform: rotate(-45deg);
+}
+
+#nav-icon2.open span:nth-child(1) {
+  left: 5px * $scale;
+  top: 7px * $scale;
+}
+
+#nav-icon2.open span:nth-child(2) {
+  left: calc(50% - 5px * $scale);
+  top: 7px * $scale;
+}
+
+#nav-icon2.open span:nth-child(3) {
+  left: -50%;
+  opacity: 0;
+}
+
+#nav-icon2.open span:nth-child(4) {
+  left: 100%;
+  opacity: 0;
+}
+
+#nav-icon2.open span:nth-child(5) {
+  left: 5px * $scale;
+  top: 29px * $scale;
+}
+
+#nav-icon2.open span:nth-child(6) {
+  left: calc(50% - 5px * $scale);
+  top: 29px * $scale;
+}
+
+// Icon 3
+#nav-icon3 span:nth-child(1) {
+  top: 0;
+}
+
+#nav-icon3 span:nth-child(2),
+#nav-icon3 span:nth-child(3) {
+  top: 18px * $scale;
+}
+
+#nav-icon3 span:nth-child(4) {
+  top: 36px * $scale;
+}
+
+#nav-icon3.open span:nth-child(1) {
+  left: 50%;
+  top: 18px * $scale;
+  width: 0;
+}
+
+#nav-icon3.open span:nth-child(2) {
+  transform: rotate(45deg);
+}
+
+#nav-icon3.open span:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+#nav-icon3.open span:nth-child(4) {
+  left: 50%;
+  top: 18px * $scale;
+  width: 0;
+}
+
+// Icon 4
+#nav-icon4 span:nth-child(1) {
+  top: 0;
+  transform-origin: left center;
+}
+
+#nav-icon4 span:nth-child(2) {
+  top: 18px * $scale;
+  transform-origin: left center;
+}
+
+#nav-icon4 span:nth-child(3) {
+  top: 36px * $scale;
+  transform-origin: left center;
+}
+
+#nav-icon4.open span:nth-child(1) {
+  left: 8px * $scale;
+  top: -3px * $scale;
+  transform: rotate(45deg);
+}
+
+#nav-icon4.open span:nth-child(2) {
+  opacity: 0;
+  width: 0;
+}
+
+#nav-icon4.open span:nth-child(3) {
+  left: 8px * $scale;
+  top: 39px * $scale;
+  transform: rotate(-45deg);
+}

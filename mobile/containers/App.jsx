@@ -1,17 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-import { defineMessages, injectIntl, intlShape } from 'react-intl';
+import { injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 
 import { getMain, toggleBullet } from 'common/actions';
 import MainImage from 'components/MainImage';
-
-const messages = defineMessages({
-  title: {
-    id: 'main.title',
-    description: 'Title in the main page',
-    defaultMessage: 'Mobile Test',
-  },
-});
+import Headline from 'components/Headline';
 
 class App extends Component {
   componentDidMount() {
@@ -19,28 +12,30 @@ class App extends Component {
   }
 
   render() {
-    const { intl, main, ui } = this.props;
-    const src = (main.images && main.images.length && main.images[0].url) || '';
-    const bullets = (main.bullets || []).map(b => ({
-      style: b.style,
-      onClick: () => console.log(b.product), // eslint-disable-line no-console
-    }));
+    const { main: { images = [], bullets = [] }, ui } = this.props;
+    const src = (images.length && images[0].url) || '';
+    const params = { bullets: [], products: [] };
+    bullets.forEach((b) => {
+      params.bullets.push({
+        style: b.style,
+        onClick: () => console.log(b.product), // eslint-disable-line no-console
+      });
+      params.products.push({
+        title: b.product.title,
+        onClick: () => console.log(b.product), // eslint-disable-line no-console
+      });
+    });
+    const onClick = this.props.toggleBullet;
     return (
       <div>
-        <h1>{intl.formatMessage(messages.title)}</h1>
-        <MainImage
-          src={src}
-          bullets={bullets}
-          showBullets={ui.bullet}
-          onClick={this.props.toggleBullet}
-        />
+        <MainImage src={src} bullets={params.bullets} showBullets={ui.bullet} onClick={onClick} />
+        <Headline products={params.products} showTitles={ui.bullet} onClick={onClick} />
       </div>
     );
   }
 }
 
 App.propTypes = {
-  intl: intlShape.isRequired,
   main: PropTypes.shape({
     images: PropTypes.arrayOf(PropTypes.shape({
       url: PropTypes.string.isRequired,

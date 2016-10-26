@@ -87,10 +87,20 @@ app.get('/api/v1/main', (req, res) => {
     }],
     bullets: [{
       style: {
-        left: '71%',
-        top: '48%',
+        left: '88%',
+        top: '45%',
       },
       product: {
+        title: 'Brush',
+        url: 'http://ameli.co.kr/shop/goods/goods_view.php?goodsno=859',
+      },
+    }, {
+      style: {
+        left: '55%',
+        top: '60%',
+      },
+      product: {
+        title: 'Skin',
         url: 'http://ameli.co.kr/shop/goods/goods_view.php?goodsno=859',
       },
     }],
