@@ -1,9 +1,17 @@
 import React, { PropTypes } from 'react';
 
-const Headline = ({ products, showTitles, onClick }) => {
+const Headline = ({ productIndex, products, showTitles, onClick }) => {
   const open = showTitles ? 'open' : '';
-  const titles = showTitles ?
-    products.map((p, i) => <button key={i} onClick={p.onClick}>{p.title}</button>) : '';
+  const renderTitles = () => {
+    if (!showTitles) {
+      return '';
+    }
+    if (productIndex >= 0) {
+      const p = products[productIndex];
+      return <button key={productIndex} onClick={p.onClick}>{p.title}</button>;
+    }
+    return products.map((p, i) => <button key={i} onClick={p.onClick}>{p.title}</button>);
+  };
   return (
     <div className="headline">
       <button onClick={onClick}>
@@ -17,12 +25,13 @@ const Headline = ({ products, showTitles, onClick }) => {
         </div>
       </button>
       <span>{products.length}</span>
-      {titles}
+      {renderTitles()}
     </div>
   );
 };
 
 Headline.propTypes = {
+  productIndex: PropTypes.number,
   products: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
   })),

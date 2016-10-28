@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 
-import { getMain, toggleBullet } from 'common/actions';
+import { getMain, toggleBullet, selectBullet } from 'common/actions';
 import MainImage from 'components/MainImage';
 import Headline from 'components/Headline';
 
@@ -19,23 +19,29 @@ class App extends Component {
     const src = main.images[0].url;
     const bullets = main.bullets.map(b => ({
       ...b,
-      onClick: () => console.log(b), // eslint-disable-line no-console
+      onClick: () => this.props.selectBullet(b.product.index),
     }));
-    const products = main.products.map(p => ({
+    const products = main.products.map((p, i) => ({
       ...p,
-      onClick: () => console.log(p), // eslint-disable-line no-console
+      onClick: () => this.props.selectBullet(i),
     }));
     const onClick = this.props.toggleBullet;
     return (
       <div>
         <MainImage
           alt={main.title}
-          src={src}
           bullets={bullets}
-          showBullets={ui.bullet}
           onClick={onClick}
+          productIndex={ui.productIndex}
+          showBullets={ui.bullet}
+          src={src}
         />
-        <Headline products={products} showTitles={ui.bullet} onClick={onClick} />
+        <Headline
+          onClick={onClick}
+          productIndex={ui.productIndex}
+          products={products}
+          showTitles={ui.bullet}
+        />
       </div>
     );
   }
@@ -65,12 +71,14 @@ App.propTypes = {
   }),
   ui: PropTypes.shape({
     bullet: PropTypes.bool.isRequired,
+    productIndex: PropTypes.number,
   }),
   getMain: PropTypes.func.isRequired,
   toggleBullet: PropTypes.func.isRequired,
+  selectBullet: PropTypes.func.isRequired,
 };
 
 export default connect(
   state => ({ main: state.main, ui: state.ui }),
-  { getMain, toggleBullet },
+  { getMain, toggleBullet, selectBullet },
 )(injectIntl(App));

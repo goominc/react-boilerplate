@@ -11,3 +11,7 @@ export const getMain = () => (dispatch) => {
 };
 
 export const toggleBullet = () => ({ type: 'TOGGLE_BULLET' });
+export const selectBullet = productIndex => ({
+  type: 'SELECT_BULLET',
+  productIndex,
+});
