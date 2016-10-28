@@ -8,6 +8,7 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 
+const media = require('./server/data/media');
 const config = require('./webpack.config');
 
 const app = express();
@@ -81,30 +82,7 @@ app.post('/api/v1/login', (req, res) => {
 });
 
 app.get('/api/v1/main', (req, res) => {
-  res.json({
-    images: [{
-      url: 'http://ameli.co.kr/shop/data/skin/0662thehome_C/new_img/main/ins_bnr16.jpg',
-    }],
-    bullets: [{
-      style: {
-        left: '88%',
-        top: '45%',
-      },
-      product: {
-        title: 'Brush',
-        url: 'http://ameli.co.kr/shop/goods/goods_view.php?goodsno=859',
-      },
-    }, {
-      style: {
-        left: '55%',
-        top: '60%',
-      },
-      product: {
-        title: 'Skin',
-        url: 'http://ameli.co.kr/shop/goods/goods_view.php?goodsno=859',
-      },
-    }],
-  });
+  res.json(media[0]);
 });
 
 // views/index.pug

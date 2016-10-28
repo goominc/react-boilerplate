@@ -12,24 +12,30 @@ class App extends Component {
   }
 
   render() {
-    const { main: { images = [], bullets = [] }, ui } = this.props;
-    const src = (images.length && images[0].url) || '';
-    const params = { bullets: [], products: [] };
-    bullets.forEach((b) => {
-      params.bullets.push({
-        style: b.style,
-        onClick: () => console.log(b.product), // eslint-disable-line no-console
-      });
-      params.products.push({
-        title: b.product.title,
-        onClick: () => console.log(b.product), // eslint-disable-line no-console
-      });
-    });
+    const { main, ui } = this.props;
+    if (!main.products) {
+      return <div>Loading...</div>;
+    }
+    const src = main.images[0].url;
+    const bullets = main.bullets.map(b => ({
+      ...b,
+      onClick: () => console.log(b), // eslint-disable-line no-console
+    }));
+    const products = main.products.map(p => ({
+      ...p,
+      onClick: () => console.log(p), // eslint-disable-line no-console
+    }));
     const onClick = this.props.toggleBullet;
     return (
       <div>
-        <MainImage src={src} bullets={params.bullets} showBullets={ui.bullet} onClick={onClick} />
-        <Headline products={params.products} showTitles={ui.bullet} onClick={onClick} />
+        <MainImage
+          alt={main.title}
+          src={src}
+          bullets={bullets}
+          showBullets={ui.bullet}
+          onClick={onClick}
+        />
+        <Headline products={products} showTitles={ui.bullet} onClick={onClick} />
       </div>
     );
   }
@@ -37,6 +43,8 @@ class App extends Component {
 
 App.propTypes = {
   main: PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string,
     images: PropTypes.arrayOf(PropTypes.shape({
       url: PropTypes.string.isRequired,
     })),
@@ -44,10 +52,15 @@ App.propTypes = {
       style: PropTypes.shape({
         left: PropTypes.string.isRequired,
         top: PropTypes.string.isRequired,
-      }),
-      product: PropTypes.shape({
-        url: PropTypes.string.isRequired,
       }).isRequired,
+      product: PropTypes.shape({
+        index: PropTypes.number.isRequired,
+      }).isRequired,
+    })),
+    products: PropTypes.arrayOf(PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
     })),
   }),
   ui: PropTypes.shape({

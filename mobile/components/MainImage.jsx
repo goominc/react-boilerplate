@@ -1,15 +1,17 @@
 import React, { PropTypes } from 'react';
 
-const MainImage = ({ src, bullets, onClick, showBullets }) => (
+const MainImage = ({ alt, src, bullets, onClick, showBullets }) => (
   <div className="main-image">
     <a tabIndex="0" onClick={onClick}>
-      <img alt="Main" src={src} />
+      <img alt={alt} src={src} />
     </a>
-    {showBullets ? bullets.map((b, i) => <button key={i} {...b} />) : ''}
+    {showBullets ? bullets.map(
+      (b, i) => <button key={i} style={b.style} onClick={b.onClick} />) : ''}
   </div>
 );
 
 MainImage.propTypes = {
+  alt: PropTypes.string.isRequired,
   src: PropTypes.string.isRequired,
   bullets: PropTypes.arrayOf(PropTypes.shape({
     style: PropTypes.shape({
