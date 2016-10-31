@@ -6,11 +6,10 @@ const Headline = ({ productIndex, products, showTitles, onClick }) => {
     if (!showTitles) {
       return '';
     }
-    if (productIndex >= 0) {
-      const p = products[productIndex];
-      return <button key={productIndex} onClick={p.onClick}>{p.title}</button>;
-    }
-    return products.map((p, i) => <button key={i} onClick={p.onClick}>{p.title}</button>);
+    return products.map((p, i) => {
+      const selected = i === productIndex ? 'selected' : '';
+      return <button className={selected} key={i} onClick={p.onClick}>{p.title}</button>;
+    });
   };
   return (
     <div className="headline">
@@ -24,7 +23,7 @@ const Headline = ({ productIndex, products, showTitles, onClick }) => {
           <span /> {/* icon2 */}
         </div>
       </button>
-      <span>{products.length}</span>
+      {showTitles ? '' : <span>{products.length}</span>}
       {renderTitles()}
     </div>
   );
