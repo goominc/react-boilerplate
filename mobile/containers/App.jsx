@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 
-import { getMain, toggleBullet, selectBullet } from 'common/actions';
+import { getMain, toggleShowingBullets, toggleSelectingBullet } from 'common/actions';
 import MainImage from 'components/MainImage';
 import Headline from 'components/Headline';
 
@@ -19,13 +19,13 @@ class App extends Component {
     const src = main.images[0].url;
     const bullets = main.bullets.map(b => ({
       ...b,
-      onClick: () => this.props.selectBullet(b.product.index),
+      onClick: () => this.props.toggleSelectingBullet(b.product.index),
     }));
     const products = main.products.map((p, i) => ({
       ...p,
-      onClick: () => this.props.selectBullet(i),
+      onClick: () => this.props.toggleSelectingBullet(i),
     }));
-    const onClick = this.props.toggleBullet;
+    const onClick = this.props.toggleShowingBullets;
     return (
       <div>
         <MainImage
@@ -74,11 +74,11 @@ App.propTypes = {
     productIndex: PropTypes.number,
   }),
   getMain: PropTypes.func.isRequired,
-  toggleBullet: PropTypes.func.isRequired,
-  selectBullet: PropTypes.func.isRequired,
+  toggleShowingBullets: PropTypes.func.isRequired,
+  toggleSelectingBullet: PropTypes.func.isRequired,
 };
 
 export default connect(
   state => ({ main: state.main, ui: state.ui }),
-  { getMain, toggleBullet, selectBullet },
+  { getMain, toggleShowingBullets, toggleSelectingBullet },
 )(injectIntl(App));
