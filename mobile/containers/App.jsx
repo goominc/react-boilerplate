@@ -42,6 +42,7 @@ class App extends Component {
           products={products}
           showTitles={ui.bullet}
         />
+        <div className="description">{main.description}</div>
       </div>
     );
   }
