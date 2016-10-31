@@ -1,6 +1,6 @@
 import request from 'superagent';
 
-export const getMain = () => (dispatch) => { // eslint-disable-line
+export const getMain = () => (dispatch) => {
   dispatch({ type: 'REQUEST_MAIN' });
   request
     .get('/api/v1/main')
@@ -9,3 +9,9 @@ export const getMain = () => (dispatch) => { // eslint-disable-line
       data: res.body,
     }));
 };
+
+export const toggleShowingBullets = () => ({ type: 'TOGGLE_SHOWING_BULLETS' });
+export const toggleSelectingBullet = productIndex => ({
+  type: 'TOGGLE_SELECTING_BULLET',
+  productIndex,
+});

@@ -1,7 +1,9 @@
-import main from 'common/reducers/main';
 import locale from 'common/reducers/locale';
+import main from 'common/reducers/main';
+import ui from 'common/reducers/ui';
 
 export default {
-  main,
   locale,
+  main,
+  ui,
 };

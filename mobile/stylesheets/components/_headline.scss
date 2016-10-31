@@ -1,0 +1,23 @@
+.headline {
+  border-bottom: 2px solid #c2d0d3;
+  color: #386970;
+  line-height: 18px;
+  margin: 0 5px;
+  padding: 5px;
+  vertical-align: middle;
+
+  button:first-child {
+    margin-right: 7px;
+  }
+
+  button:not(:first-child) {
+    color: #386970;
+    float: right;
+    font-size: 14px;
+    opacity: 0.3;
+  }
+
+  button.selected {
+    opacity: 1;
+  }
+}

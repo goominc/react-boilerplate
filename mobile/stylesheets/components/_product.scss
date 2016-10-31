@@ -1,0 +1,31 @@
+.product {
+  img {
+    width: 100%;
+  }
+
+  .container {
+    background: #f4f4f4;
+    padding: 15px;
+
+    .actions {
+      border-bottom: 1px solid #eae6e7;
+      padding-bottom: 10px;
+      text-align: center;
+
+      button {
+        font-size: 16px;
+        line-height: 16px;
+      }
+
+      .add-to-cart {
+        color: #fe0000;
+        float: left;
+      }
+
+      .wish-list {
+        color: #807070;
+        float: right;
+      }
+    }
+  }
+}
