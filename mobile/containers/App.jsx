@@ -44,7 +44,7 @@ class App extends Component {
           showTitles={ui.bullet}
         />
         <Product productIndex={ui.productIndex} products={products} />
-        <div className="description">{main.description}</div>
+        <div className="description">{main.description.split('\n').map(d => <p>{d}</p>)}</div>
       </div>
     );
   }
