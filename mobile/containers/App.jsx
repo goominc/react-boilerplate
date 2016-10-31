@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { getMain, toggleShowingBullets, toggleSelectingBullet } from 'common/actions';
 import MainImage from 'components/MainImage';
 import Headline from 'components/Headline';
+import Product from 'components/Product';
 
 class App extends Component {
   componentDidMount() {
@@ -42,6 +43,7 @@ class App extends Component {
           products={products}
           showTitles={ui.bullet}
         />
+        <Product productIndex={ui.productIndex} products={products} />
         <div className="description">{main.description}</div>
       </div>
     );
@@ -67,6 +69,9 @@ App.propTypes = {
     products: PropTypes.arrayOf(PropTypes.shape({
       title: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
+      image: PropTypes.shape({
+        url: PropTypes.string.isRequired,
+      }).isRequired,
       url: PropTypes.string.isRequired,
     })),
   }),
