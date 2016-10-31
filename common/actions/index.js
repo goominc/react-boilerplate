@@ -10,8 +10,8 @@ export const getMain = () => (dispatch) => {
     }));
 };
 
-export const toggleBullet = () => ({ type: 'TOGGLE_BULLET' });
-export const selectBullet = productIndex => ({
-  type: 'SELECT_BULLET',
+export const toggleShowingBullets = () => ({ type: 'TOGGLE_SHOWING_BULLETS' });
+export const toggleSelectingBullet = productIndex => ({
+  type: 'TOGGLE_SELECTING_BULLET',
   productIndex,
 });

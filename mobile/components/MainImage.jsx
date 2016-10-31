@@ -9,7 +9,7 @@ const MainImage = ({ alt, bullets, onClick, productIndex, showBullets, src }) =>
     bullets.forEach((b, i) => {
       if (productIndex >= 0) {
         if (b.product.index === productIndex) {
-          ret.push(<button key={i} style={b.style} />);
+          ret.push(<button key={i} style={b.style} onClick={b.onClick} />);
         }
       } else {
         ret.push(<button key={i} style={b.style} onClick={b.onClick} />);
