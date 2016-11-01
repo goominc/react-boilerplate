@@ -15,3 +15,9 @@ export const toggleSelectingBullet = productIndex => ({
   type: 'TOGGLE_SELECTING_BULLET',
   productIndex,
 });
+
+export const updateQuantity = (variantId, quantity) => ({
+  type: 'UPDATE_QUANTITY',
+  variantId,
+  quantity,
+});

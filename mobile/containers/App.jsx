@@ -2,7 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 
-import { getMain, toggleShowingBullets, toggleSelectingBullet } from 'common/actions';
+import { getMain, toggleShowingBullets, toggleSelectingBullet, updateQuantity }
+  from 'common/actions';
 import MainImage from 'components/MainImage';
 import Headline from 'components/Headline';
 import Product from 'components/Product';
@@ -13,7 +14,7 @@ class App extends Component {
   }
 
   render() {
-    const { main, ui } = this.props;
+    const { cart, main, ui } = this.props;
     if (!main.products) {
       return <div>Loading...</div>;
     }
@@ -43,8 +44,15 @@ class App extends Component {
           products={products}
           showTitles={ui.bullet}
         />
-        <Product productIndex={ui.productIndex} products={products} />
-        <div className="description">{main.description.split('\n').map(d => <p>{d}</p>)}</div>
+        <Product
+          cart={cart}
+          productIndex={ui.productIndex}
+          products={products}
+          updateQuantity={this.props.updateQuantity}
+        />
+        <div className="description">
+          {main.description.split('\n').map((d, i) => <p key={i}>{d}</p>)}
+        </div>
       </div>
     );
   }
@@ -79,12 +87,19 @@ App.propTypes = {
     bullet: PropTypes.bool.isRequired,
     productIndex: PropTypes.number,
   }),
+  cart: PropTypes.shape({
+    variants: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      quantity: PropTypes.number.isRequired,
+    })),
+  }),
   getMain: PropTypes.func.isRequired,
   toggleShowingBullets: PropTypes.func.isRequired,
   toggleSelectingBullet: PropTypes.func.isRequired,
+  updateQuantity: PropTypes.func.isRequired,
 };
 
 export default connect(
-  state => ({ main: state.main, ui: state.ui }),
-  { getMain, toggleShowingBullets, toggleSelectingBullet },
+  state => ({ main: state.main, ui: state.ui, cart: state.cart }),
+  { getMain, toggleShowingBullets, toggleSelectingBullet, updateQuantity },
 )(injectIntl(App));
