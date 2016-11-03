@@ -1,3 +1,5 @@
+$separator: 1px solid #eae6e7;
+
 .product {
   img {
     width: 100%;
@@ -7,15 +9,15 @@
     background: #f4f4f4;
     padding: 15px;
 
+    button {
+      font-size: 16px;
+      line-height: 16px;
+    }
+
     .actions {
-      border-bottom: 1px solid #eae6e7;
+      border-bottom: $separator;
       padding-bottom: 10px;
       text-align: center;
-
-      button {
-        font-size: 16px;
-        line-height: 16px;
-      }
 
       .add-to-cart {
         color: #fe0000;
@@ -25,6 +27,47 @@
       .wish-list {
         color: #807070;
         float: right;
+      }
+    }
+
+    .variants {
+      border-bottom: $separator;
+      padding: 10px 0;
+
+      .quantity {
+        border: 1px solid #dcdc00;
+        color: #9f9e9c;
+        display: inline-block;
+        margin-left: 10px;
+        padding: 6px 6px 6px 12px;
+        width: 55px;
+
+        span {
+          float: right;
+        }
+      }
+
+      button {
+        color: #a19d9c;
+        font-size: 20px;
+        line-height: 20px;
+        margin: 2px 0 0 15px;
+      }
+    }
+
+    .tabs {
+      border-bottom: $separator;
+      padding: 10px 0;
+
+      button {
+        color: #f5949d;
+        opacity: 0.5;
+        text-align: center;
+        width: 25%;
+      }
+
+      button.selected {
+        opacity: 1;
       }
     }
   }
