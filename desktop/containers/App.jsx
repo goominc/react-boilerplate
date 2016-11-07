@@ -22,10 +22,10 @@ const App = ({ auth, intl }) => (
     <VisibleTodoList />
     <Footer />
     {auth && auth.email ? `Hi, ${auth.email}` :
-      <div>
-        <Link to="/auth/login">Login</Link><br />
-        <Link to="/auth/signup">Signup</Link>
-      </div>
+    <div>
+      <Link to="/auth/login">Login</Link><br />
+      <Link to="/auth/signup">Signup</Link>
+    </div>
     }
     <br />
     <Link to="/about">About</Link><br />
