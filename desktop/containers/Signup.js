@@ -5,5 +5,5 @@ import SignupForm from 'components/SignupForm';
 
 export default connect(
   undefined,
-  dispatch => ({ doSignup: body => dispatch(signup(body)) })
+  dispatch => ({ doSignup: body => dispatch(signup(body)) }),
 )(SignupForm);

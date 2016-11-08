@@ -38,6 +38,6 @@ export default (routes, reducers) => {
         </Router>
       </ConnectedIntlProvider>
     </Provider>,
-    document.getElementById('root')
+    document.getElementById('root'),
   );
 };

@@ -5,5 +5,5 @@ import LoginForm from 'components/LoginForm';
 
 export default connect(
   undefined,
-  dispatch => ({ doLogin: body => dispatch(login(body)) })
+  dispatch => ({ doLogin: body => dispatch(login(body)) }),
 )(LoginForm);
