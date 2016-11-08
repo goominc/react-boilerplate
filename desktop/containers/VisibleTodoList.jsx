@@ -18,5 +18,5 @@ const getVisibleTodos = (todos, filter) => {
 
 export default connect(
   state => ({ todos: getVisibleTodos(state.todos, state.visibilityFilter) }),
-  dispatch => ({ onTodoClick: id => dispatch(toggleTodo(id)) })
+  dispatch => ({ onTodoClick: id => dispatch(toggleTodo(id)) }),
 )(TodoList);

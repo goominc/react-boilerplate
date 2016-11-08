@@ -50,9 +50,11 @@ class App extends Component {
           products={products}
           updateQuantity={this.props.updateQuantity}
         />
-        <div className="description">
-          {main.description.split('\n').map((d, i) => <p key={i}>{d}</p>)}
-        </div>
+        {ui.bullet ?
+          <div className="description">
+            {main.description.split('\n').map((d, i) => <p key={i}>{d}</p>)}
+          </div> : null
+        }
       </div>
     );
   }

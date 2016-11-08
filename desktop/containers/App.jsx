@@ -40,5 +40,5 @@ App.propTypes = {
 };
 
 export default connect(
-  state => ({ auth: state.auth })
+  state => ({ auth: state.auth }),
 )(injectIntl(App));

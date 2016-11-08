@@ -10,7 +10,7 @@ const TodoList = ({ todos, onTodoClick }) => (
         tabIndex={todo.id}
         onClick={() => onTodoClick(todo.id)}
         {...todo}
-      />
+      />,
     )}
   </ul>
 );

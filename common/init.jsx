@@ -5,11 +5,10 @@ import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerMiddleware, routerReducer } from 'react-router-redux';
 import thunk from 'redux-thunk';
-import promiseMiddleware from 'redux-promise-middleware';
 
 import ConnectedIntlProvider from 'common/i18n/ConnectedIntlProvider';
 
-const middlewares = [thunk, promiseMiddleware(), routerMiddleware(browserHistory)];
+const middlewares = [thunk, routerMiddleware(browserHistory)];
 let composeEnhancers = compose;
 if (process.env.NODE_ENV === 'development') {
   require('stylesheets/main.scss'); // eslint-disable-line
@@ -38,6 +37,6 @@ export default (routes, reducers) => {
         </Router>
       </ConnectedIntlProvider>
     </Provider>,
-    document.getElementById('root')
+    document.getElementById('root'),
   );
 };
