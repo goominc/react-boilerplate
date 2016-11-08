@@ -26,6 +26,8 @@ const messages = glob.sync(MESSAGES_PATTERN)
     return collection;
   }, {});
 
+const toJsonString = obj => (`${JSON.stringify(obj, null, 2)}\n`);
+
 glob.sync(TRANSLATED_TEXT_PATTERN).forEach((filename) => {
   if (path.basename(filename) === ENGLISH_FILE) {
     return;
@@ -38,8 +40,8 @@ glob.sync(TRANSLATED_TEXT_PATTERN).forEach((filename) => {
       merged[key] = data[key];
     }
   });
-  fs.writeFileSync(filename, JSON.stringify(merged, null, 2));
+  fs.writeFileSync(filename, toJsonString(merged));
 });
 
 mkdirp.sync(I18N_DIR);
-fs.writeFileSync(path.join(I18N_DIR, ENGLISH_FILE), JSON.stringify(messages, null, 2));
+fs.writeFileSync(path.join(I18N_DIR, ENGLISH_FILE), toJsonString(messages));
