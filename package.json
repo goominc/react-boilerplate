@@ -75,7 +75,6 @@
     "react-router-redux": "^4.0.7",
     "redux": "^3.6.0",
     "redux-logger": "^2.7.4",
-    "redux-promise-middleware": "^4.1.0",
     "redux-thunk": "^2.1.0",
     "superagent": "^2.3.0",
     "webpack": "^1.13.3",
