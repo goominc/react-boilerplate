@@ -24,7 +24,6 @@ module.exports = devices.map((device) => {
         presets: ['es2015', 'stage-3', 'react'],
         plugins: [['react-intl', {
           messagesDir: './build/messages/',
-          enforceDescriptions: true,
         }]],
       },
     },

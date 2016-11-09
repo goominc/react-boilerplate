@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import ko from 'react-intl/locale-data/ko';
 
-import messages from 'common/i18n/messages';
+import messages from 'common/i18n/translated';
 
 addLocaleData(ko);
 
