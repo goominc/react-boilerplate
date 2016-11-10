@@ -1,16 +1,28 @@
+/* eslint-disable import/no-extraneous-dependencies */
+
 const fs = require('fs');
-const glob = require('glob'); // eslint-disable-line import/no-extraneous-dependencies
-const mkdirp = require('mkdirp'); // eslint-disable-line import/no-extraneous-dependencies
+const glob = require('glob');
+const mkdirp = require('mkdirp');
 const path = require('path');
+const stringify = require('json-stable-stringify');
+
+const { flattened } = require('../common/i18n/messages');
+
+const commonDescriptors = [];
+Object.keys(flattened).forEach(key => commonDescriptors.push({
+  id: key,
+  defaultMessage: flattened[key],
+}));
 
 const ENGLISH_FILE = 'en.json';
-const toJsonString = obj => (`${JSON.stringify(obj, null, 2)}\n`);
+const toJsonString = obj => (`${stringify(obj, { space: '  ' })}\n`);
 
 ['desktop', 'mobile'].forEach((device) => {
   const has = Object.prototype.hasOwnProperty;
   const messages = glob.sync(`build/messages/${device}/**/*.json`)
     .map(filename => fs.readFileSync(filename, 'utf8'))
     .map(file => JSON.parse(file))
+    .concat([commonDescriptors])
     .reduce((collection, descriptors) => {
       descriptors.forEach(({ id, defaultMessage }) => {
         if (has.call(collection, id)) {
