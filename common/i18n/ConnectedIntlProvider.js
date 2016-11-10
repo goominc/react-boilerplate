@@ -2,13 +2,11 @@ import { connect } from 'react-redux';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import ko from 'react-intl/locale-data/ko';
 
-import messages from 'common/i18n/translated';
+// These messages are loaded from either mobile or desktop by webpack.
+import messages from 'messages';
 
 addLocaleData(ko);
 
-function mapStateToProps(state) {
-  const locale = state.locale;
-  return { locale, messages: messages[locale] };
-}
-
-export default connect(mapStateToProps)(IntlProvider);
+export default connect(
+  state => ({ locale: state.locale, messages: messages[state.locale] }),
+)(IntlProvider);

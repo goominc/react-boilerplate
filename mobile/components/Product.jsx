@@ -1,6 +1,14 @@
 import React, { PropTypes } from 'react';
+import { defineMessages, injectIntl, intlShape } from 'react-intl';
 
-const Product = ({ cart, productIndex, products, updateQuantity }) => {
+const messages = defineMessages({
+  addToCart: {
+    id: 'product.addToCart',
+    defaultMessage: 'ADD TO CART',
+  },
+});
+
+const Product = ({ cart, intl, productIndex, products, updateQuantity }) => {
   if (productIndex === undefined) {
     return null;
   }
@@ -24,7 +32,7 @@ const Product = ({ cart, productIndex, products, updateQuantity }) => {
       </div>
       <div className="container">
         <div className="actions">
-          <button className="add-to-cart">ADD TO CART</button>
+          <button className="add-to-cart">{intl.formatMessage(messages.addToCart)}</button>
           <button className="buy-now">BUY NOW</button>
           <button className="wish-list">WISH LIST</button>
         </div>
@@ -56,6 +64,7 @@ Product.propTypes = {
       quantity: PropTypes.number.isRequired,
     })),
   }),
+  intl: intlShape.isRequired,
   productIndex: PropTypes.number,
   products: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
@@ -63,4 +72,4 @@ Product.propTypes = {
   updateQuantity: PropTypes.func,
 };
 
-export default Product;
+export default injectIntl(Product);
