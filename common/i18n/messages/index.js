@@ -1,4 +1,15 @@
-import en from './en.json';
-import ko from './ko.json';
+import flatten, { unflatten } from 'flat';
 
-export default { en, ko };
+import app from './app';
+
+export const flattened = flatten({
+  app,
+});
+
+const descriptors = {};
+Object.keys(flattened).forEach(key => (descriptors[key] = {
+  id: key,
+  defaultMessage: flattened[key],
+}));
+
+export default unflatten(descriptors);

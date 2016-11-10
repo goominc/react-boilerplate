@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import { IntlProvider, addLocaleData } from 'react-intl';
 
-import messages from 'common/i18n/messages';
+// These messages are loaded from either mobile or desktop by webpack.
+import messages from 'messages';
 
 if ('ReactIntlLocaleData' in window) {
   Object.keys(window.ReactIntlLocaleData).forEach((lang) => {
@@ -9,9 +10,6 @@ if ('ReactIntlLocaleData' in window) {
   });
 }
 
-function mapStateToProps(state) {
-  const locale = state.locale;
-  return { locale, messages: messages[locale] };
-}
-
-export default connect(mapStateToProps)(IntlProvider);
+export default connect(
+  state => ({ locale: state.locale, messages: messages[state.locale] }),
+)(IntlProvider);
