@@ -8,22 +8,43 @@ import AddTodo from 'containers/AddTodo';
 import VisibleTodoList from 'containers/VisibleTodoList';
 import messages from 'common/i18n/messages';
 
+const Login = ({ auth }) => {
+  if (auth && auth.email) {
+    return <div>Hi, {auth.email}</div>;
+  }
+  return (
+    <div>
+      <Link to="/auth/login">Login</Link><br />
+      <Link to="/auth/signup">Signup</Link>
+    </div>
+  );
+};
+
 const App = ({ auth, intl }) => (
   <div>
     <h1>{intl.formatMessage(messages.app.title)}</h1>
     <AddTodo />
     <VisibleTodoList />
     <Footer />
-    {auth && auth.email ? `Hi, ${auth.email}` :
-    <div>
-      <Link to="/auth/login">Login</Link><br />
-      <Link to="/auth/signup">Signup</Link>
-    </div>
-    }
+    <Login auth={auth} />
     <br />
     <Link to="/about">About</Link><br />
   </div>
 );
+
+Login.defaultProps = {
+  auth: null,
+};
+
+Login.propTypes = {
+  auth: PropTypes.shape({
+    email: PropTypes.string,
+  }),
+};
+
+App.defaultProps = {
+  auth: null,
+};
 
 App.propTypes = {
   auth: PropTypes.shape({

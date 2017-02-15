@@ -8,7 +8,8 @@ const Headline = ({ productIndex, products, showTitles, onClick }) => {
     }
     return products.map((p, i) => {
       const selected = i === productIndex ? 'selected' : '';
-      return <button className={selected} key={i} onClick={p.onClick}>{p.title}</button>;
+      const key = `product_${i}`;
+      return <button className={selected} key={key} onClick={p.onClick}>{p.title}</button>;
     });
   };
   return (
@@ -29,11 +30,15 @@ const Headline = ({ productIndex, products, showTitles, onClick }) => {
   );
 };
 
+Headline.defaultProps = {
+  productIndex: undefined,
+};
+
 Headline.propTypes = {
   productIndex: PropTypes.number,
   products: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
-  })),
+  })).isRequired,
   onClick: PropTypes.func.isRequired,
   showTitles: PropTypes.bool.isRequired,
 };

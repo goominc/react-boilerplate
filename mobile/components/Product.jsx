@@ -50,11 +50,18 @@ const Product = ({ cart, intl, productIndex, products, updateQuantity }) => {
           <button>Review</button>
         </div>
         <div className="description">
-          {p.description.split('\n').map((d, i) => <p key={i}>{d}</p>)}
+          {p.description.split('\n').map((d, i) => {
+            const key = `desc_${i}`;
+            return <p key={key}>{d}</p>;
+          })}
         </div>
       </div>
     </div>
   );
+};
+
+Product.defaultProps = {
+  productIndex: undefined,
 };
 
 Product.propTypes = {
@@ -63,13 +70,13 @@ Product.propTypes = {
       id: PropTypes.number.isRequired,
       quantity: PropTypes.number.isRequired,
     })),
-  }),
+  }).isRequired,
   intl: intlShape.isRequired,
   productIndex: PropTypes.number,
   products: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
-  })),
-  updateQuantity: PropTypes.func,
+  })).isRequired,
+  updateQuantity: PropTypes.func.isRequired,
 };
 
 export default injectIntl(Product);

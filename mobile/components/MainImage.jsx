@@ -7,12 +7,13 @@ const MainImage = ({ alt, bullets, onClick, productIndex, showBullets, src }) =>
     }
     const ret = [];
     bullets.forEach((b, i) => {
+      const key = `bullet_${i}`;
       if (productIndex >= 0) {
         if (b.product.index === productIndex) {
-          ret.push(<button key={i} style={b.style} onClick={b.onClick} />);
+          ret.push(<button key={key} style={b.style} onClick={b.onClick} />);
         }
       } else {
-        ret.push(<button key={i} style={b.style} onClick={b.onClick} />);
+        ret.push(<button key={key} style={b.style} onClick={b.onClick} />);
       }
     });
     return ret;
@@ -27,6 +28,10 @@ const MainImage = ({ alt, bullets, onClick, productIndex, showBullets, src }) =>
   );
 };
 
+MainImage.defaultProps = {
+  productIndex: undefined,
+};
+
 MainImage.propTypes = {
   alt: PropTypes.string.isRequired,
   src: PropTypes.string.isRequired,
@@ -36,7 +41,7 @@ MainImage.propTypes = {
       top: PropTypes.string.isRequired,
     }),
     onClick: PropTypes.func.isRequired,
-  })),
+  })).isRequired,
   showBullets: PropTypes.bool.isRequired,
   productIndex: PropTypes.number,
   onClick: PropTypes.func.isRequired,

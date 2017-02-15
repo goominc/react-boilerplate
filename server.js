@@ -4,6 +4,7 @@ const connect = require('connect');
 const express = require('express');
 const morgan = require('morgan');
 const omit = require('lodash.omit');
+const path = require('path');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
@@ -13,6 +14,9 @@ const config = require('./webpack.config');
 
 const app = express();
 app.set('view engine', 'pug');
+
+// public images
+app.use('/static', express.static(path.join(__dirname, 'public')));
 
 // morgan
 app.use(morgan('dev'));
@@ -27,8 +31,7 @@ app.use((req, res, next) => {
 if (process.env.NODE_ENV === 'production') {
   app.use('/dist', express.static('dist'));
 } else {
-  const webpackMiddlewares = {};
-  config.forEach((c) => {
+  const webpackMiddlewares = config.map((c) => {
     const compiler = webpack(c);
     const middleware = connect();
     middleware.use(webpackDevMiddleware(compiler, {
@@ -40,11 +43,12 @@ if (process.env.NODE_ENV === 'production') {
       path: '/__webpack_hmr',
       heartbeat: 10 * 1000,
     }));
-    webpackMiddlewares[c.device] = middleware;
+    return middleware;
   });
 
   app.use((req, res, next) => {
-    webpackMiddlewares[req.device](req, res, next);
+    const index = req.device === 'mobile' ? 1 : 0;
+    webpackMiddlewares[index](req, res, next);
   });
 }
 

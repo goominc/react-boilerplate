@@ -52,7 +52,10 @@ class App extends Component {
         />
         {ui.bullet ?
           <div className="description">
-            {main.description.split('\n').map((d, i) => <p key={i}>{d}</p>)}
+            {main.description.split('\n').map((d, i) => {
+              const key = `desc_${i}`;
+              return <p key={key}>{d}</p>;
+            })}
           </div> : null
         }
       </div>
@@ -84,17 +87,17 @@ App.propTypes = {
       }).isRequired,
       url: PropTypes.string.isRequired,
     })),
-  }),
+  }).isRequired,
   ui: PropTypes.shape({
     bullet: PropTypes.bool.isRequired,
     productIndex: PropTypes.number,
-  }),
+  }).isRequired,
   cart: PropTypes.shape({
     variants: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
       quantity: PropTypes.number.isRequired,
     })),
-  }),
+  }).isRequired,
   getMain: PropTypes.func.isRequired,
   toggleShowingBullets: PropTypes.func.isRequired,
   toggleSelectingBullet: PropTypes.func.isRequired,
