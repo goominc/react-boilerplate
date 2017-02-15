@@ -35,7 +35,7 @@ const LoginForm = ({ doLogin }) => {
 };
 
 LoginForm.propTypes = {
-  doLogin: PropTypes.func,
+  doLogin: PropTypes.func.isRequired,
 };
 
 export default LoginForm;

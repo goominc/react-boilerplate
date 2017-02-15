@@ -44,7 +44,7 @@ const SignupForm = ({ doSignup }) => {
 };
 
 SignupForm.propTypes = {
-  doSignup: PropTypes.func,
+  doSignup: PropTypes.func.isRequired,
 };
 
 export default SignupForm;

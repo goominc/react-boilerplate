@@ -13,12 +13,11 @@ module.exports = devices.map((device) => {
         NODE_ENV: JSON.stringify(mode),
       },
     }),
-    new webpack.optimize.OccurenceOrderPlugin(),
   ];
-  const loaders = [
+  const rules = [
     {
       test: /\.jsx?$/,
-      loader: 'babel',
+      loader: 'babel-loader',
       exclude: /node_modules/,
       query: {
         presets: ['es2015', 'stage-3', 'react'],
@@ -29,11 +28,10 @@ module.exports = devices.map((device) => {
     },
     {
       test: /\.json$/,
-      loader: 'json',
+      loader: 'json-loader',
     },
   ];
   const configuration = {
-    device,
     entry,
     output: {
       path: path.resolve(__dirname, 'dist'),
@@ -41,10 +39,11 @@ module.exports = devices.map((device) => {
       publicPath: '/dist/',
     },
     resolve: {
-      extensions: ['', '.js', '.jsx'],
-      root: [
+      extensions: ['.js', '.jsx'],
+      modules: [
         path.resolve(__dirname),
         path.resolve(__dirname, device),
+        'node_modules',
       ],
     },
     externals: {
@@ -60,32 +59,29 @@ module.exports = devices.map((device) => {
       superagent: 'superagent',
     },
     plugins,
-    module: { loaders },
+    module: { rules },
   };
 
   const test = new RegExp(`${device}\\/stylesheets\\/.*\\.scss$`);
   if (mode === 'production') {
     entry.push(path.resolve(__dirname, `${device}/stylesheets/main.scss`));
-    plugins.push(new ExtractTextPlugin(`${device}.css`));
-    plugins.push(new webpack.optimize.DedupePlugin());
-    plugins.push(new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-      },
-    }));
-    loaders.push({
+    plugins.push(new ExtractTextPlugin({ filename: `${device}.css` }));
+    plugins.push(new webpack.optimize.UglifyJsPlugin());
+    rules.push({
       test,
-      loader: ExtractTextPlugin.extract('css!sass'),
+      loader: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: [{ loader: 'css-loader' }, { loader: 'sass-loader' }],
+      }),
     });
   } else {
     configuration.devtool = '#source-map';
 
     entry.push('webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true');
     plugins.push(new webpack.HotModuleReplacementPlugin());
-    plugins.push(new webpack.NoErrorsPlugin());
-    loaders.push({
+    rules.push({
       test,
-      loaders: ['style', 'css', 'sass'],
+      use: [{ loader: 'style-loader' }, { loader: 'css-loader' }, { loader: 'sass-loader' }],
     });
   }
   return configuration;
