@@ -20,7 +20,7 @@ const MainImage = ({ alt, bullets, onClick, productIndex, showBullets, src }) =>
   };
   return (
     <div className="main-image">
-      <a tabIndex="0" onClick={onClick}>
+      <a tabIndex="0" onClick={onClick} role="link">
         <img alt={alt} src={src} />
       </a>
       {renderBullets()}

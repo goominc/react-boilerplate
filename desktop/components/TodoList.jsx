@@ -4,14 +4,14 @@ import Todo from 'components/Todo';
 
 const TodoList = ({ todos, onTodoClick }) => (
   <ul>
-    {todos && todos.map(todo =>
+    {todos && todos.map(todo => (
       <Todo
         key={todo.id}
         tabIndex={todo.id}
         onClick={() => onTodoClick(todo.id)}
         {...todo}
-      />,
-    )}
+      />
+    ))}
   </ul>
 );
 
