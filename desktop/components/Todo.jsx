@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 const Todo = ({ tabIndex, onClick, completed, text }) => (
   <li style={{ textDecoration: completed ? 'line-through' : 'none' }}>
-    <a tabIndex={tabIndex} onClick={onClick}>
+    <a tabIndex={tabIndex} onClick={onClick} role="link">
       {text}
     </a>
   </li>

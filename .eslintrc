@@ -7,6 +7,7 @@
     "babel"
   ],
   "rules": {
+    "no-return-assign": ["error", "except-parens"],
     "react/no-unused-prop-types": ["error", { skipShapeProps: true }]
   },
   "settings": {
