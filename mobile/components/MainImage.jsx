@@ -1,6 +1,9 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-const MainImage = ({ alt, bullets, onClick, productIndex, showBullets, src }) => {
+const MainImage = ({
+  alt, bullets, onClick, productIndex, showBullets, src,
+}) => {
   const renderBullets = () => {
     if (!showBullets) {
       return '';

@@ -1,6 +1,9 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-const Headline = ({ productIndex, products, showTitles, onClick }) => {
+const Headline = ({
+  productIndex, products, showTitles, onClick,
+}) => {
   const open = showTitles ? 'open' : '';
   const renderTitles = () => {
     if (!showTitles) {

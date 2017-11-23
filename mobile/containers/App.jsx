@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 
@@ -106,5 +107,7 @@ App.propTypes = {
 
 export default connect(
   state => ({ main: state.main, ui: state.ui, cart: state.cart }),
-  { getMain, toggleShowingBullets, toggleSelectingBullet, updateQuantity },
+  {
+    getMain, toggleShowingBullets, toggleSelectingBullet, updateQuantity,
+  },
 )(injectIntl(App));

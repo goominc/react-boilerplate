@@ -1,14 +1,15 @@
+import createHistory from 'history/createBrowserHistory';
 import React from 'react';
 import { render } from 'react-dom';
 import { applyMiddleware, createStore, combineReducers, compose } from 'redux';
 import { Provider } from 'react-redux';
-import { Router, browserHistory } from 'react-router';
-import { syncHistoryWithStore, routerMiddleware, routerReducer } from 'react-router-redux';
+import { ConnectedRouter, routerMiddleware, routerReducer } from 'react-router-redux';
 import thunk from 'redux-thunk';
 
 import ConnectedIntlProvider from 'common/i18n/ConnectedIntlProvider';
 
-const middlewares = [thunk, routerMiddleware(browserHistory)];
+const history = createHistory();
+const middlewares = [thunk, routerMiddleware(history)];
 let composeEnhancers = compose;
 if (process.env.NODE_ENV === 'development') {
   require('stylesheets/main.scss'); // eslint-disable-line
@@ -22,19 +23,16 @@ if (process.env.NODE_ENV === 'development') {
 
 export default (routes, reducers) => {
   const store = createStore(
-    combineReducers({
-      ...reducers,
-      routing: routerReducer,
-    }),
-    composeEnhancers(applyMiddleware(...middlewares)));
-  const history = syncHistoryWithStore(browserHistory, store);
+    combineReducers({ ...reducers, router: routerReducer }),
+    composeEnhancers(applyMiddleware(...middlewares)),
+  );
 
   render(
     <Provider store={store}>
       <ConnectedIntlProvider>
-        <Router history={history}>
+        <ConnectedRouter history={history}>
           {routes}
-        </Router>
+        </ConnectedRouter>
       </ConnectedIntlProvider>
     </Provider>,
     document.getElementById('root'),

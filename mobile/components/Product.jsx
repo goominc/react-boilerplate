@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { defineMessages, injectIntl, intlShape } from 'react-intl';
 
 const messages = defineMessages({
@@ -8,7 +9,9 @@ const messages = defineMessages({
   },
 });
 
-const Product = ({ cart, intl, productIndex, products, updateQuantity }) => {
+const Product = ({
+  cart, intl, productIndex, products, updateQuantity,
+}) => {
   if (productIndex === undefined) {
     return null;
   }
@@ -18,7 +21,7 @@ const Product = ({ cart, intl, productIndex, products, updateQuantity }) => {
   if (cart && cart.variants) {
     cart.variants.forEach((v) => {
       if (v.id === productIndex) {
-        quantity = v.quantity;
+        ({ quantity } = v);
       }
     });
   }

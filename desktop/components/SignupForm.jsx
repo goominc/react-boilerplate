@@ -1,5 +1,6 @@
-import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const SignupForm = ({ doSignup }) => {
   const input = {};

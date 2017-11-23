@@ -7,7 +7,11 @@
     "babel"
   ],
   "rules": {
+    "function-paren-newline": 0,
+    "jsx-a11y/anchor-is-valid": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
     "no-return-assign": ["error", "except-parens"],
+    "react/no-typos": 0,
     "react/no-unused-prop-types": ["error", { skipShapeProps: true }]
   },
   "settings": {

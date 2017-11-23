@@ -9,11 +9,11 @@ import init from 'common/init';
 import reducers from 'reducers';
 
 init(
-  <Route>
-    <Route path="/" component={App} />
+  <div>
+    <Route exact path="/" component={App} />
     <Route path="/about" component={About} />
     <Route path="/auth/login" component={Login} />
     <Route path="/auth/signup" component={Signup} />
-  </Route>,
+  </div>,
   reducers,
 );

@@ -6,8 +6,8 @@ import App from 'containers/App';
 import reducers from 'reducers';
 
 init(
-  <Route>
+  <div>
     <Route path="/" component={App} />
-  </Route>,
+  </div>,
   reducers,
 );

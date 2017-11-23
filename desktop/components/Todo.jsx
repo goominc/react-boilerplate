@@ -1,6 +1,9 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-const Todo = ({ tabIndex, onClick, completed, text }) => (
+const Todo = ({
+  tabIndex, onClick, completed, text,
+}) => (
   <li style={{ textDecoration: completed ? 'line-through' : 'none' }}>
     <a tabIndex={tabIndex} onClick={onClick} role="link">
       {text}
